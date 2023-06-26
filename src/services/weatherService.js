@@ -57,7 +57,7 @@ const formatForecastWeather = (data) => {
    hourly = hourly.slice(1, 6).map((d) => {
      return {
        title: formatToLocalTime(d.dt, timezone, "hh:mm a"),
-       temp: d.temp.day,
+       temp: d.temp,
        icon: d.weather[0],
      };
    });
@@ -82,7 +82,7 @@ const getFormattedWeatherData = async searchParams => {
 	return { ...formattedCurrentWeather, ...formattedForecastWeather }
 }
 
-const iconURL = (code) => `http://openweathermap.org/img/wn/01d@2x.png`
+const iconURL = (code) => `http://openweathermap.org/img/wn/${code}@2x.png`
 
 const formatToLocalTime = (
 	secs,
@@ -91,4 +91,4 @@ const formatToLocalTime = (
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
 export default getFormattedWeatherData
-export {formatToLocalTime, iconURL}
+export  {formatToLocalTime, iconURL}
